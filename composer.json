@@ -1,0 +1,48 @@
+{
+  "name": "honcho/craft-sections-field",
+  "description": "All of your sections in one tidy little field",
+  "type": "craft-plugin",
+  "license": "mit",
+  "support": {
+    "email": "dev@honcho.agency",
+    "issues": "https://github.com/honchoagency/craft-sections-field/issues?state=open",
+    "source": "https://github.com/honchoagency/craft-sections-field",
+    "docs": "https://github.com/honchoagency/craft-sections-field",
+    "rss": "https://github.com/honchoagency/craft-sections-field/releases.atom"
+  },
+  "require": {
+    "php": ">=8.2",
+    "craftcms/cms": "^5.5.0"
+  },
+  "require-dev": {
+    "craftcms/ecs": "dev-main",
+    "craftcms/phpstan": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "honcho\\sectionsfield\\": "src/"
+    }
+  },
+  "extra": {
+    "handle": "sections-field",
+    "name": "Sections Field",
+    "developer": "Honcho",
+    "documentationUrl": "https://github.com/honchoagency/craft-sections-field",
+    "class": "honcho\\sectionsfield\\SectionsField"
+  },
+  "scripts": {
+    "check-cs": "ecs check --ansi",
+    "fix-cs": "ecs check --ansi --fix",
+    "phpstan": "phpstan --memory-limit=1G"
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "8.2"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  }
+}
