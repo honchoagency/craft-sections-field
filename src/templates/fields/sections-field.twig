@@ -1,9 +1,0 @@
-<div class="sections-field-wrapper">
-    <select name="{{ name }}" id="{{ id }}" class="sections-field-dropdown">
-        {% for section in sections %}
-            <option value="{{ section.id }}" {% if section.id == value %}selected{% endif %}>
-                {{ section.name }}
-            </option>
-        {% endfor %}
-    </select>
-</div>
