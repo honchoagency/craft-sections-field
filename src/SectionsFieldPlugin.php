@@ -10,7 +10,7 @@ use craft\services\Fields;
 use honcho\sectionsfield\fields\SectionsField;
 
 /**
- * Sections Field plugin
+ * Sections Field plugin - adds a new field type to the CMS which allows users to select from a list of sections on the site (multiselect)
  *
  * @method static SectionsField getInstance()
  * @author Honcho <dev@honcho.agency>
