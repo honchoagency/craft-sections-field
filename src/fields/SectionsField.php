@@ -3,31 +3,47 @@
 namespace honcho\sectionsfield\fields;
 
 use Craft;
-use craft\base\ElementInterface;
-use craft\base\Field;
-use honcho\sectionsfield\assetbundles\SectionsFieldAsset;
+use craft\fields\MultiSelect;
 
-class SectionsField extends Field
+class SectionsField extends MultiSelect
 {
+    /**
+     * @inheritdoc
+     */
     public static function displayName(): string
     {
-        return Craft::t('app', 'Sections Field Custom');
+        return Craft::t('app', 'Sections');
     }
 
-    public static function getSections(): array
+    /**
+     * @inheritdoc
+     */
+    protected function optionsSettingLabel(): string
     {
-        return Craft::$app->entries->allSections;
+        return Craft::t('app', 'Sections');
     }
 
-    function getInputHtml(mixed $value, ?ElementInterface $element): string
+    /**
+     * @inheritdoc
+     */
+    protected function options(): array
     {
-        Craft::$app->view->registerAssetBundle(SectionsFieldAsset::class);
+        $sections = Craft::$app->entries->allSections;
+        $options = array_map(function ($section) {
+            return [
+                'label' => $section->name,
+                'value' => (string) $section->id,
+            ];
+        }, $sections);
 
-        return Craft::$app->view->renderTemplate('sections-field/fields/sections-field', [
-            'name' => $this->handle,
-            'id' => $this->handle . '-' . uniqid(),
-            'value' => $value,
-            'sections' => $this->getSections(),
-        ]);
+        return $options;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSettingsHtml(): ?string
+    {
+        return null;
     }
 }

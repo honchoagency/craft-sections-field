@@ -7,8 +7,6 @@ use yii\base\Event;
 use craft\base\Plugin;
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
-use honcho\sectionsfield\fields\SectionsChipField;
-use honcho\sectionsfield\fields\SectionsDropdownField;
 use honcho\sectionsfield\fields\SectionsField;
 
 /**
@@ -38,29 +36,11 @@ class SectionsFieldPlugin extends Plugin
 
         $this->attachEventHandlers();
 
-        // Any code that creates an element query or loads Twig should be deferred until
-        // after Craft is fully initialized, to avoid conflicts with other plugins/modules
         Craft::$app->onInit(function () {});
     }
 
     private function attachEventHandlers(): void
     {
-        Event::on(
-            Fields::class,
-            Fields::EVENT_REGISTER_FIELD_TYPES,
-            function (RegisterComponentTypesEvent $event) {
-                $event->types[] = SectionsDropdownField::class;
-            }
-        );
-
-        Event::on(
-            Fields::class,
-            Fields::EVENT_REGISTER_FIELD_TYPES,
-            function (RegisterComponentTypesEvent $event) {
-                $event->types[] = SectionsChipField::class;
-            }
-        );
-
         Event::on(
             Fields::class,
             Fields::EVENT_REGISTER_FIELD_TYPES,
