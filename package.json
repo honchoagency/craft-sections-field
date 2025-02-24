@@ -1,0 +1,22 @@
+{
+  "name": "craft-sections-field",
+  "version": "1.0.0",
+  "description": "All of your sections in one tidy little field",
+  "main": "vite.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honchoagency/craft-sections-field.git"
+  },
+  "author": "Honcho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/honchoagency/craft-sections-field/issues"
+  },
+  "homepage": "https://github.com/honchoagency/craft-sections-field#readme",
+  "dependencies": {
+    "vite": "^6.1.1"
+  }
+}
