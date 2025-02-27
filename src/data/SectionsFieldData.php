@@ -76,9 +76,9 @@ class SectionsFieldData extends MultiOptionsFieldData
             throw new InvalidArgumentException("Property '{ $property }' does not exist on type SectionData");
         }
 
-        return array_map(function ($section) use ($property) {
+        return array_values(array_map(function ($section) use ($property) {
             return $section->$property;
-        }, $this->getSelectedSections());
+        }, $this->getSelectedSections()));
     }
 
     /**
