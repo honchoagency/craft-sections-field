@@ -77,7 +77,7 @@ class SectionsFieldData extends MultiOptionsFieldData
         }
 
         return array_map(function ($section) use ($property) {
-            return $section[$property];
+            return $section->$property;
         }, $this->getSelectedSections());
     }
 
