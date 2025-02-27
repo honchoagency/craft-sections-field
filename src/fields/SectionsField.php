@@ -3,8 +3,11 @@
 namespace honcho\sectionsfield\fields;
 
 use Craft;
+use craft\base\ElementInterface;
 use craft\fields\MultiSelect;
 use craft\helpers\Cp;
+use honcho\sectionsfield\data\SectionData;
+use honcho\sectionsfield\data\SectionsFieldData;
 
 /**
  * This field extends the Craft `MultiSelect` field type and allows users to select specific sections
@@ -28,22 +31,30 @@ class SectionsField extends MultiSelect
     }
 
     /**
-     * Retrieves all sections or filters them by specific section IDs.
+     * Retrieves all sections or filters them by specific section handles.
      *
-     * @param array<int>|null $sectionIds An optional array of section IDs to filter the results. If null, all sections are returned.
+     * @param array<string>|null $sectionHandles An optional array of section Handles to filter the results. If null, all sections are returned.
      * @return array An array of section objects.
      */
-    public static function getSections(?array $sectionIds = null): array
+    public static function getSections(?array $sectionHandles = null): array
     {
         $sections = Craft::$app->entries->allSections ?? [];
 
-        if ($sectionIds) {
-            $sections = array_filter($sections, function ($section) use ($sectionIds) {
-                return in_array($section->id, $sectionIds);
+        if ($sectionHandles) {
+            $sections = array_filter($sections, function ($section) use ($sectionHandles) {
+                return in_array($section->handle, $sectionHandles);
             });
         }
 
         return $sections ?? [];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function icon(): string
+    {
+        return 'newspaper';
     }
 
     /**
@@ -63,7 +74,7 @@ class SectionsField extends MultiSelect
         $options = array_map(function ($section) {
             return [
                 'label' => $section->name,
-                'value' => (string) $section->id,
+                'value' => (string) $section->handle,
             ];
         }, $sections);
 
@@ -83,10 +94,69 @@ class SectionsField extends MultiSelect
             'options' => array_map(function ($section) {
                 return [
                     'label' => $section->name,
-                    'value' => (string) $section->id,
+                    'value' => (string) $section->handle,
                 ];
             }, $sections),
             'values' => $this->allowedSections ?? [],
         ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function normalizeValue(mixed $value, ?ElementInterface $element): mixed
+    {
+        if ($value instanceof SectionsFieldData) {
+            return $value;
+        }
+
+        $value = parent::normalizeValue($value, $element);
+        $options = $value->getOptions();
+        $sections = [];
+        $selectedOptions = [];
+
+        foreach ((array) $options as $option) {
+            $sectionName = $option->label;
+            $sectionHandle = $option->value;
+            $sectionId = Craft::$app->entries->getSectionByHandle($sectionHandle)->id;
+            $sectionData = new SectionData(
+                $sectionName,
+                $sectionHandle,
+                $sectionId,
+                $option->selected ?? false,
+                $option->valid ?? true
+            );
+
+            $sections[] = $sectionData;
+
+            if ($option->selected) {
+                $selectedOptions[] = $sectionData;
+            }
+        }
+
+        $value = new SectionsFieldData($selectedOptions);
+        $value->setSections($sections);
+
+        return $value;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function serializeValue(mixed $value, ?ElementInterface $element): mixed
+    {
+        if ($value instanceof SectionsFieldData) {
+            $serialized = [];
+
+            foreach ($value->getSections() as $option) {
+                if ($option->selected) {
+                    $serialized[] = $option->value;
+                }
+            }
+
+            return $serialized;
+        }
+
+        return parent::serializeValue($value, $element);
     }
 }
