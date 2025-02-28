@@ -2,7 +2,7 @@
     <img src="./docs/resources/banner.jpg" alt="Sections Field Plugin"/>
 </p>
 
-# Sections Field Plugin for Craft CMS 4 and 5
+# Sections Field Plugin for Craft CMS 5
 
 Enhance your Craft CMS experience with the Sections Field plugin, allowing users to select from a list of sections on the site with a simple multi-select field.
 
@@ -28,7 +28,7 @@ Enhance your Craft CMS experience with the Sections Field plugin, allowing users
 
 ## Requirements
 
-This plugin requires Craft CMS 4.0.0 or later.
+This plugin requires Craft CMS 5.0.0 or later.
 
 ## Installation
 
@@ -55,5 +55,57 @@ Follow these steps to install Sections Field:
         ./craft plugin/install sections-field
 
    Alternatively, in the Control Panel, go to Settings → Plugins and click the “Install” button for Sections Field.
+
+## Usage
+The `SectionsFieldData` class provides multiple helper methods for accessing section data. Below is a list of available methods and their functionality.
+
+### Element Query Example
+
+**Twig Example:**
+```twig
+{% set entries = craft.entries.section(mySectionsField.handles).all() %}
+```
+
+### Methods
+
+#### `names(): array`
+Returns an array of section names that are currently selected.
+
+**Twig Example:**
+```twig
+{% for name in sectionsFieldData.names() %}
+    {{ name }}
+{% endfor %}
+```
+
+#### `handles(): array`
+Returns an array of section handles that are currently selected.
+
+**Twig Example:**
+```twig
+{% for handle in sectionsFieldData.handles() %}
+    {{ handle }}
+{% endfor %}
+```
+
+#### `ids(): array`
+Returns an array of section IDs that are currently selected.
+
+**Twig Example:**
+```twig
+{% for id in sectionsFieldData.ids() %}
+    {{ id }}
+{% endfor %}
+```
+
+#### `sections(): array`
+Returns an array of Craft section objects corresponding to the selected sections.
+
+**Twig Example:**
+```twig
+{% for section in sectionsFieldData.sections() %}
+    {{ section.name }}
+{% endfor %}
+```
 
 Created by [Honcho Agency](https://honcho.agency)
