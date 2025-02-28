@@ -14,7 +14,7 @@ use honcho\sectionsfield\data\SectionsFieldData;
  * from the CMS. Available sections can be configured via field settings, by default all sections are available.
  *
  * @package honcho\sectionsfield\fields
- * @author Honcho <dev@honcho.agency>
+ * @author Honcho Agency <dev@honcho.agency>
  * @license MIT
  * @link https://honcho.agency/
  */
@@ -54,6 +54,12 @@ class SectionsField extends MultiSelect
      */
     public static function icon(): string
     {
+        $iconPath = Craft::getAlias('@honcho/sectionsfield/resources/field-icon.svg');
+
+        if (file_exists($iconPath)) {
+            return file_get_contents($iconPath);
+        }
+
         return 'newspaper';
     }
 

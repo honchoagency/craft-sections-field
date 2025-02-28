@@ -10,7 +10,7 @@ use InvalidArgumentException;
  * Sections field data class.
  *
  * @package honcho\sectionsfield\data
- * @author Honcho <dev@honcho.agency>
+ * @author Honcho Agency <dev@honcho.agency>
  * @license MIT
  * @link https://honcho.agency/
  */

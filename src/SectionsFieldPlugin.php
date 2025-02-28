@@ -13,8 +13,9 @@ use honcho\sectionsfield\fields\SectionsField;
  * Sections Field plugin - adds a new field type to the CMS which allows users to select from a list of sections on the site (multiselect)
  *
  * @method static SectionsField getInstance()
- * @author Honcho <dev@honcho.agency>
- * @copyright Honcho
+ * @author Honcho Agency <dev@honcho.agency>
+ * @link https://honcho.agency/
+ * @copyright Copyright (c) 2025 Honcho
  * @license MIT
  */
 class SectionsFieldPlugin extends Plugin

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./docs/resources/Banner.jpg" alt="Sections Field Plugin"/>
+    <img src="./docs/resources/banner.jpg" alt="Sections Field Plugin"/>
 </p>
 
 # Sections Field Plugin for Craft CMS 4 and 5
@@ -56,4 +56,4 @@ Follow these steps to install Sections Field:
 
    Alternatively, in the Control Panel, go to Settings → Plugins and click the “Install” button for Sections Field.
 
-Created by [Honcho](https://honcho.agency)
+Created by [Honcho Agency](https://honcho.agency)

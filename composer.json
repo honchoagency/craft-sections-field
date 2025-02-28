@@ -1,10 +1,16 @@
 {
     "name": "honchoagency/craft-sections-field",
-    "description": "All of your sections in one tidy little field",
+    "description": "Allows users to select from a list of sections on the site with a simple multi-select field.",
     "type": "craft-plugin",
     "license": "mit",
     "version": "1.0.0",
     "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "honchoagency",
+            "homepage": "https://honcho.agency"
+        }
+    ],
     "support": {
         "email": "dev@honcho.agency",
         "issues": "https://github.com/honchoagency/craft-sections-field/issues?state=open",
@@ -28,7 +34,7 @@
     "extra": {
         "handle": "sections-field",
         "name": "Sections Field",
-        "developer": "Honcho",
+        "developer": "Honcho Agency",
         "documentationUrl": "https://github.com/honchoagency/craft-sections-field",
         "class": "honcho\\sectionsfield\\SectionsFieldPlugin"
     },
