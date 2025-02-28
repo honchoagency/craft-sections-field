@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./docs/resources/banner.jpg" alt="Sections Field Plugin"/>
+    <img src="./docs/resources/Banner.jpg" alt="Sections Field Plugin"/>
 </p>
 
 # Sections Field Plugin for Craft CMS 5
