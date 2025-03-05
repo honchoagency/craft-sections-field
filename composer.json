@@ -3,7 +3,7 @@
     "description": "Allows users to select from a list of sections on the site with a simple multi-select field.",
     "type": "craft-plugin",
     "license": "mit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "minimum-stability": "dev",
     "authors": [
         {
